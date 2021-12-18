@@ -1,1 +1,0 @@
-# mnrmax.github.io
