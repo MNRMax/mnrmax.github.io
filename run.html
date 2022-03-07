@@ -147,7 +147,7 @@ function updateGameArea() {
     else {
         if (parseInt(document.cookie.slice(10)) < editedScore || document.cookie == "")
         {
-            document.cookie = `highscore=${editedScore}`
+            document.cookie = `highscore=${editedScore}; expires=Thu, 18 Dec 3000 12:00:00 UTC`
         }
         var ctx = myGameArea.context;
         ctx.font = "80px Arial";
