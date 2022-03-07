@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border: 6px solid #207e04;
+    background-color: #6bf17d;
+}
+body {background-color: rgb(39, 39, 39);}
+h1 {color: azure;}
+</style>
+</head>
+<body onload="startGame()">
+    <h1 id="cpsDisplay"></h1>
+<script>
+var blueGamePiece;
+var cps = 0;
+var started = false;
+
+function startGame() {
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 0.8 * window.innerWidth;
+        this.canvas.height = 0.8 * window.innerHeight;
+        console.log(`${screen.width}x${screen.height}`)
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener("click", function(){ click() });
+        window.addEventListener("ontouchstart", function(){ click() });
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+async function click() {
+    if (!started){started = true; }
+    cps++
+    await delay(1000)
+    cps--
+}
+
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+function updateGameArea() {
+    document.getElementById('cpsDisplay').innerHTML = cps;
+}
+
+function end() {
+    console.log(cps)
+}
+</script>
+</body>
+</html>
