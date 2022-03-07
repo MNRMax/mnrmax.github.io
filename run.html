@@ -40,7 +40,7 @@ var myGameArea = {
                jump()
             }
         })
-        window.addEventListener("ontouchstart", function(){ jump() });
+        window.addEventListener("touchstart", function(){jump()});
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
